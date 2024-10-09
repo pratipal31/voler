@@ -27,17 +27,20 @@ model VolunteerProfile {
 
 // 2. Real-Time Alerts for Urgent Volunteer Needs
 model Alert {
-  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  id                String     @id @default(auto()) @map("_id") @db.ObjectId
   title             String
   description       String
   organizationId    String
   skillsNeeded      String[]
   location          String
   volunteerIds      String[]
-  createdAt         DateTime @default(now())
+  createdAt         DateTime   @default(now())
   alertType         String
-  notification      String[]
+  notification      String[]               
+  startDateTime     DateTime   // New field for start date and time
+  endDateTime       DateTime   // New field for end date and time
 }
+
 
 // 3. Resource Sharing Feature
 model Resource {
