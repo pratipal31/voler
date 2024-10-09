@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// 1. Volunteer Registration and Skill Categorization
+model VolunteerProfile {
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  email           String  @unique
+  phoneNumber     String
+  skills          String[]
+  certifications  String[]
+  availability    String
+  isVerified      Boolean @default(false)
+}
+
+// 2. Real-Time Alerts for Urgent Volunteer Needs
+model Alert {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  title             String
+  description       String
+  organizationId    String
+  skillsNeeded      String[]
+  location          String
+  volunteerIds      String[]
+  createdAt         DateTime @default(now())
+  alertType         String
+  notification      String[]
+}
+
+// 3. Resource Sharing Feature
+model Resource {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  resourceName      String
+  organizationId    String
+  resourceType      String
+  quantity          Int
+  status            String  // Available, In Use, etc.
+  offeredBy         String  // Volunteer who offered
+  location          String
+  createdAt         DateTime @default(now())
+  isShelter         Boolean @default(false) // For shelter listing
+}
+
+// 4. Individual Table
+model Individual {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  number   String
+  username String  @unique
+  password String
+}
+
+// 5. Organisation Table
+model Organisation {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  resourceId  String
+  username    String  @unique
+  password    String
+}
