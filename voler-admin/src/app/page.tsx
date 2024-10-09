@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import VolunteerForm from "../app/volunteer/page";
 
 export default function Home() {
   return (
@@ -38,9 +37,9 @@ export default function Home() {
             Join our community of passionate volunteers making a difference
           </h3>
           <Link href="./components/login">
-          <button className="border border-white text-white px-6 py-3 rounded-md bg-transparent hover:bg-white hover:text-black transition duration-300 transform hover:scale-105">
-            Join Us
-          </button>
+            <button className="border border-white text-white px-6 py-3 rounded-md bg-transparent hover:bg-white hover:text-black transition duration-300 transform hover:scale-105">
+              Join Us
+            </button>
           </Link>
         </div>
       </div>
@@ -178,7 +177,6 @@ export default function Home() {
           reserved.
         </div>
       </footer>
-      <VolunteerForm></VolunteerForm>
     </div>
   );
 }
