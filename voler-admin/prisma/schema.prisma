@@ -57,7 +57,10 @@ model Resource {
 model Individual {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
   name     String
+  description String
   number   String
+  email    String  @unique
+  location String
   username String  @unique
   password String
 }
@@ -67,6 +70,10 @@ model Organisation {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   resourceId  String
-  username    String  @unique
-  password    String
+  description String
+  number   String
+  email    String  @unique
+  location String
+  username String  @unique
+  password String
 }
