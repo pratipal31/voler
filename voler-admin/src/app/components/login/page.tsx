@@ -1,7 +1,9 @@
 "use client"; // Client Component
 
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import SignUp from '../signup/page';
+import HomePage from '../home/page';
 
 const LoginPage = () => {
   const [identifier, setIdentifier] = useState(""); // Changed email to identifier
@@ -76,12 +78,13 @@ const LoginPage = () => {
               placeholder="Enter your password"
             />
           </div>
+          <Link href="../../components/home">
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-          >
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
             Login
           </button>
+          </Link>
         </form>
         <div className="flex justify-between mt-4">
           <Link
