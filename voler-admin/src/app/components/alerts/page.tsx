@@ -94,7 +94,7 @@ const Alert = ({ isActive }) => {
             </li>
           <li>
             <Link
-              href="../../components/"
+              href="../../components"
               className="block px-3 py-2 rounded hover:bg-gray-700"
             >
               Display Alerts
@@ -102,7 +102,7 @@ const Alert = ({ isActive }) => {
           </li>
           <li>
             <Link
-              href="/admin/organisations"
+              href="../../components/Organization"
               className="block px-3 py-2 rounded hover:bg-gray-700"
             >
               Organisations

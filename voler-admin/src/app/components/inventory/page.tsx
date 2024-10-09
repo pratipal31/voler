@@ -95,7 +95,7 @@ const Inventory = () => {
             </li>
             <li>
               <Link
-                href="/admin/organisations"
+                href="../../components/Organization"
                 className="block px-3 py-2 rounded hover:bg-gray-700"
               >
                 Organisations

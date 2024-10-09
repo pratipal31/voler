@@ -1,91 +1,63 @@
 "use client";
-import React, { useState } from "react";
-import { Line, Bar, Pie } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  BarElement,
-  LineElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import Link from "next/link";
-import Inventory from "../inventory/page";
-import Alert from "../alerts/page";
-import SignUp from "../signup/page";
+import React, { useState } from 'react';
+import { Line, Bar, Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, BarElement, LineElement, ArcElement, Title, Tooltip, Legend } from 'chart.js';
+import Link from 'next/link';
+import Inventory from '../inventory/page';
+import Alert from '../alerts/page';
+import SignUp from '../signup/page';
 
 // Register necessary components for Chart.js
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, ArcElement, Title, Tooltip, Legend);
 
 const HomePage = () => {
-  const [activePage, setActivePage] = useState("dashboard");
-  const user = "Pratipal"; // You can dynamically fetch or set the username
+  const [activePage, setActivePage] = useState('dashboard');
+  const user = 'Pratipal'; // You can dynamically fetch or set the username
 
   // Sample data for different charts
   const volunteerData = {
-    labels: ["2018", "2019", "2020", "2021", "2022", "2023"],
+    labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
     datasets: [
       {
-        label: "Volunteers",
+        label: 'Volunteers',
         data: [50, 100, 150, 200, 250, 300],
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
         fill: true,
       },
     ],
   };
 
   const eventsData = {
-    labels: ["2018", "2019", "2020", "2021", "2022", "2023"],
+    labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
     datasets: [
       {
-        label: "Events",
+        label: 'Events',
         data: [5, 10, 15, 20, 30, 35],
-        backgroundColor: "rgba(255, 99, 132, 0.6)",
+        backgroundColor: 'rgba(255, 99, 132, 0.6)',
       },
     ],
   };
 
   const alertsData = {
-    labels: ["2018", "2019", "2020", "2021", "2022", "2023"],
+    labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
     datasets: [
       {
-        label: "Alerts",
+        label: 'Alerts',
         data: [100, 200, 250, 300, 400, 500],
-        backgroundColor: [
-          "rgba(54, 162, 235, 0.6)",
-          "rgba(255, 159, 64, 0.6)",
-          "rgba(153, 102, 255, 0.6)",
-          "rgba(75, 192, 192, 0.6)",
-          "rgba(255, 206, 86, 0.6)",
-          "rgba(231, 76, 60, 0.6)",
-        ],
+        backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(231, 76, 60, 0.6)'],
       },
     ],
   };
 
   const growthData = {
-    labels: ["2018", "2019", "2020", "2021", "2022", "2023"],
+    labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
     datasets: [
       {
-        label: "Growth Rate",
+        label: 'Growth Rate',
         data: [2, 4, 6, 8, 10, 12],
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
         fill: true,
       },
     ],
@@ -95,11 +67,11 @@ const HomePage = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: 'top',
       },
       title: {
         display: true,
-        text: "Alert Distribution Over the Years",
+        text: 'Alert Distribution Over the Years',
       },
     },
   };
@@ -108,11 +80,11 @@ const HomePage = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: 'top',
       },
       title: {
         display: true,
-        text: "Statistics Over Time",
+        text: 'Statistics Over Time',
       },
     },
   };
@@ -126,9 +98,9 @@ const HomePage = () => {
           <li>
             <Link
               href="../../components/home"
-              onClick={() => setActivePage("dashboard")}
+              onClick={() => setActivePage('dashboard')}
               className={`block px-3 py-2 rounded hover:bg-gray-700 ${
-                activePage === "dashboard" ? "bg-gray-700" : ""
+                activePage === 'dashboard' ? 'bg-gray-700' : ''
               }`}
             >
               Dashboard
@@ -137,9 +109,9 @@ const HomePage = () => {
           <li>
             <Link
               href="../../components/inventory"
-              onClick={() => setActivePage("inventory")}
+              onClick={() => setActivePage('inventory')}
               className={`block px-3 py-2 rounded hover:bg-gray-700 ${
-                activePage === "inventory" ? "bg-gray-700" : ""
+                activePage === 'inventory' ? 'bg-gray-700' : ''
               }`}
             >
               Inventory
@@ -148,9 +120,9 @@ const HomePage = () => {
           <li>
             <Link
               href="../../components/alerts"
-              onClick={() => setActivePage("alerts")}
+              onClick={() => setActivePage('alerts')}
               className={`block px-3 py-2 rounded hover:bg-gray-700 ${
-                activePage === "alerts" ? "bg-gray-700" : ""
+                activePage === 'alerts' ? 'bg-gray-700' : ''
               }`}
             >
               Alerts
@@ -159,9 +131,9 @@ const HomePage = () => {
           <li>
             <Link
               href="/admin/display-alerts"
-              onClick={() => setActivePage("display-alerts")}
+              onClick={() => setActivePage('display-alerts')}
               className={`block px-3 py-2 rounded hover:bg-gray-700 ${
-                activePage === "display-alerts" ? "bg-gray-700" : ""
+                activePage === 'display-alerts' ? 'bg-gray-700' : ''
               }`}
             >
               Display Alerts
@@ -169,10 +141,10 @@ const HomePage = () => {
           </li>
           <li>
             <Link
-              href="/admin/organisations"
-              onClick={() => setActivePage("organisations")}
+              href="../../components/Organization"
+              onClick={() => setActivePage('organisations')}
               className={`block px-3 py-2 rounded hover:bg-gray-700 ${
-                activePage === "organisations" ? "bg-gray-700" : ""
+                activePage === 'organisations' ? 'bg-gray-700' : ''
               }`}
             >
               Organisations
@@ -181,8 +153,7 @@ const HomePage = () => {
           <li>
             <Link
               href="../../components/signup"
-              onClick={() => setActivePage("signup")}
-              className="block px-3 py-2 rounded hover:bg-gray-700"
+              className="block px-3 py-2 rounded hover:bg-gray-700 "
             >
               Log Out
             </Link>
