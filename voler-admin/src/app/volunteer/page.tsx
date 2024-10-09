@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import prisma from "../../lib/prisma"; // Import your Prisma client
+import { VolunteerProfile } from "@prisma/client"; // Import your Prisma client
 import { GetServerSideProps } from "next";
 
 const VolunteerForm = () => {
@@ -26,7 +26,7 @@ const VolunteerForm = () => {
     };
 
     try {
-      const response = await fetch("../../api/volunteer", {
+      const response = await fetch("/api/volunteer/route", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

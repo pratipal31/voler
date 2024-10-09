@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import VolunteerForm from "../app/volunteer/page";
 
 export default function Home() {
   return (
@@ -177,6 +178,7 @@ export default function Home() {
           reserved.
         </div>
       </footer>
+      <VolunteerForm></VolunteerForm>
     </div>
   );
 }
