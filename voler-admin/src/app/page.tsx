@@ -1,100 +1,180 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="flex flex-col min-h-screen">
+      {/* Navbar */}
+      <nav className="bg-gray-800 text-white w-full py-4 px-6 fixed top-0 z-50">
+        <div className="flex items-center">
+          <div className="flex items-center">
+            {/* Logo */}
             <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/logo.png" // Replace with your logo path in the "public" folder
+              alt="Logo"
+              width={100}
+              height={90} // Adjust height according to your logo's natural size
+              layout="intrinsic" // Use intrinsic to maintain the logo's aspect ratio
+              className="object-contain" // Ensures the image scales properly
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </nav>
+
+      {/* Image Banner with Transparent Join Us Button */}
+      <div className="relative w-full h-96 mt-7 overflow-hidden"> {/* Add overflow-hidden */}
+        <Image
+          src="/volunteer.jpg" // Replace with your image path
+          alt="Banner Image"
+          layout="fill"
+          objectFit="cover" // Ensure the full image is displayed without cropping
+          quality={100}
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <button className="border border-white text-white px-6 py-3 rounded-md bg-transparent hover:bg-white hover:text-black transition">
+            Join Us
+          </button>
+        </div>
+      </div>
+
+      {/* Section with Three Cards */}
+      <div className="flex flex-wrap justify-around items-start py-12 gap-6">
+        {/* Card 1 */}
+        <div className="bg-gray-100 shadow-md rounded-lg relative overflow-hidden max-w-sm transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600">
+          <h2 className="text-2xl font-semibold mb-4 text-center">Our Mission</h2>
+          <div className="h-56">
+            <Image
+              src="/card1.jpg"
+              alt="Our Mission"
+              width={700}
+              height={200}
+              layout="responsive"
+              objectFit="cover" // Use cover to fill the entire space
+            />
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100">
+            <p className="text-white text-lg font-bold text-center">
+              We are dedicated to fostering a spirit of community and compassion
+              through volunteerism. Our mission is to connect individuals with
+              meaningful opportunities that inspire action and create lasting
+              change. Together, we aim to empower our volunteers, uplift those
+              in need, and build a brighter future for all.
+            </p>
+          </div>
+        </div>
+
+        {/* Card 2 */}
+        <div className="bg-gray-100 shadow-md rounded-lg relative overflow-hidden max-w-sm transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600">
+          <h2 className="text-2xl font-semibold mb-4 text-center">Our Team</h2>
+          <div className="h-56">
+            <Image
+              src="/card2.jpg"
+              alt="Our Team"
+              width={700}
+              height={200}
+              layout="responsive"
+              objectFit="cover" // Use cover to fill the entire space
+            />
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100">
+            <p className="text-white text-lg font-bold text-center">
+              Our team is a diverse group of passionate individuals committed to
+              making a difference in our community. Each member brings unique
+              skills and experiences, united by a shared dedication to service.
+              Together, we foster an inclusive environment that encourages
+              collaboration and innovation, ensuring that every voice is heard.
+            </p>
+          </div>
+        </div>
+
+        {/* Card 3 */}
+        <div className="bg-gray-100 shadow-md rounded-lg relative overflow-hidden max-w-sm transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600">
+          <h2 className="text-2xl font-semibold mb-4 text-center">Our Vision</h2>
+          <div className="h-56">
+            <Image
+              src="/card3.jpg"
+              alt="Our Vision"
+              width={700}
+              height={200}
+              layout="responsive"
+              objectFit="cover" // Use cover to fill the entire space
+            />
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100">
+            <p className="text-white text-lg font-bold text-center">
+              We envision a world where everyone can contribute their time and
+              talents to uplift their communities. Our goal is to inspire
+              action, foster connections among diverse groups, and empower
+              communities to thrive together. Together, we create a culture of
+              active citizenship, embracing volunteerism as a vital part of
+              life.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-6 mt-12">
+        <div className="container mx-auto flex flex-wrap justify-between">
+          {/* Logo Section */}
+          <div className="w-full md:w-1/4 mb-6">
+            <Image
+              src="/logo.png" // Replace with your logo path
+              alt="Logo"
+              width={100}
+              height={90}
+              layout="intrinsic"
+            />
+            <p className="mt-2">Connecting communities through volunteerism.</p>
+          </div>
+
+          {/* Quick Links */}
+          <div className="w-full md:w-1/4 mb-6">
+            <h2 className="text-xl font-semibold mb-2">Quick Links</h2>
+            <ul>
+              <li className="mb-2">
+                <Link href="/about" className="text-gray-400 hover:text-white">About Us</Link>
+              </li>
+              <li className="mb-2">
+                <Link href="/volunteer" className="text-gray-400 hover:text-white">Volunteer</Link>
+              </li>
+              <li className="mb-2">
+                <Link href="/contact" className="text-gray-400 hover:text-white">Contact</Link>
+              </li>
+              <li className="mb-2">
+                <Link href="/events" className="text-gray-400 hover:text-white">Events</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Follow Us Section */}
+          <div className="w-full md:w-1/4 mb-6">
+            <h2 className="text-xl font-semibold mb-2">Follow Us</h2>
+            <ul>
+              <li className="mb-2">
+                <Link href="https://facebook.com" className="text-gray-400 hover:text-white">Facebook</Link>
+              </li>
+              <li className="mb-2">
+                <Link href="https://twitter.com" className="text-gray-400 hover:text-white">Twitter</Link>
+              </li>
+              <li className="mb-2">
+                <Link href="https://instagram.com" className="text-gray-400 hover:text-white">Instagram</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div className="w-full md:w-1/4 mb-6">
+            <h2 className="text-xl font-semibold mb-2">Contact Us</h2>
+            <p className="text-gray-400 mb-2">Email: voluntrust@gmail.com</p>
+            <p className="text-gray-400">Phone: +91 8850585249</p>
+          </div>
+        </div>
+
+        {/* Copyright Section */}
+        <div className="text-center mt-6 border-t border-gray-700 pt-4">
+          <p>© 2024 Your Volunteer Website. All Rights Reserved.</p>
+        </div>
       </footer>
     </div>
   );
