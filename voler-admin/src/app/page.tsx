@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import VolunteerForm from "../app/volunteer/page";
 
 export default function Home() {
   return (
@@ -211,6 +212,7 @@ export default function Home() {
           <p>© 2024 Your Volunteer Website. All Rights Reserved.</p>
         </div>
       </footer>
+      <VolunteerForm></VolunteerForm>
     </div>
   );
 }
