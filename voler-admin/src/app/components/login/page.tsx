@@ -26,7 +26,7 @@ const LoginPage = () => {
       if (response.ok) {
         console.log("Login successful:", data);
         // Redirect user to another page after successful login
-        window.location.href = "/dashboard"; // Redirect to your dashboard or homepage
+        window.location.href = "../../components/signup"; // Redirect to your dashboard or homepage
       } else {
         setError(data.error || "Login failed"); // Show the error message
       }
