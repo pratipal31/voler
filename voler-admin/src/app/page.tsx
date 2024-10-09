@@ -3,46 +3,51 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col">
       {/* Navbar */}
-      <nav className="bg-gray-800 text-white w-full py-4 px-6 fixed top-0 z-50">
-        <div className="flex items-center">
-          <div className="flex items-center">
-            {/* Logo */}
+      <nav className="bg-gray-800 text-white w-full py-4 px-6 fixed top-0 z-50 shadow-lg">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center ">
             <Image
-              src="/logo.png" // Replace with your logo path in the "public" folder
+              src="/logo.png"
               alt="Logo"
-              width={100}
-              height={90} // Adjust height according to your logo's natural size
-              layout="intrinsic" // Use intrinsic to maintain the logo's aspect ratio
-              className="object-contain" // Ensures the image scales properly
+              layout="intrinsic" // Use intrinsic layout
+              className="w-32 h-32 mr-4" // Tailwind classes for width and height
+              width={100} // Original size for optimization
+              height={100} // Original size for optimization
             />
           </div>
         </div>
       </nav>
 
       {/* Image Banner with Transparent Join Us Button */}
-      <div className="relative w-full h-96 mt-7 overflow-hidden">
-        {" "}
-        {/* Add overflow-hidden */}
+      <div className="relative w-full h-screen overflow-hidden">
         <Image
-          src="/volunteer.jpg" // Replace with your image path
+          src="/volunteer.jpg"
           alt="Banner Image"
           layout="fill"
-          objectFit="cover" // Ensure the full image is displayed without cropping
+          objectFit="cover"
           quality={100}
         />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <button className="border border-white text-white px-6 py-3 rounded-md bg-transparent hover:bg-white hover:text-black transition">
+        <div className="absolute inset-0 bg-black opacity-60 flex items-center justify-center flex-col">
+          <h1 className="text-white text-5xl md:text-6xl font-bold mb-4 text-center">
+            Unite for a Cause, Serve with Heart
+          </h1>
+          <h3 className="text-white text-2xl mb-4 text-center">
+            Join our community of passionate volunteers making a difference
+          </h3>
+          <Link href="./components/login">
+          <button className="border border-white text-white px-6 py-3 rounded-md bg-transparent hover:bg-white hover:text-black transition duration-300 transform hover:scale-105">
             Join Us
           </button>
+          </Link>
         </div>
       </div>
 
       {/* Section with Three Cards */}
-      <div className="flex flex-wrap justify-around items-start py-12 gap-6">
+      <div className="flex flex-wrap cursor-pointer justify-around items-start py-12 gap-6">
         {/* Card 1 */}
-        <div className="bg-gray-100 shadow-md rounded-lg relative overflow-hidden max-w-sm transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600">
+        <div className="bg-gray-100 shadow-lg rounded-lg relative overflow-hidden max-w-sm transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600">
           <h2 className="text-2xl font-semibold mb-4 text-center">
             Our Mission
           </h2>
@@ -53,22 +58,21 @@ export default function Home() {
               width={700}
               height={200}
               layout="responsive"
-              objectFit="cover" // Use cover to fill the entire space
+              objectFit="cover"
             />
           </div>
           <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100">
-            <p className="text-white text-lg font-bold text-center">
+            <p className="text-white text-lg font-bold text-center p-4">
               We are dedicated to fostering a spirit of community and compassion
               through volunteerism. Our mission is to connect individuals with
               meaningful opportunities that inspire action and create lasting
-              change. Together, we aim to empower our volunteers, uplift those
-              in need, and build a brighter future for all.
+              change.
             </p>
           </div>
         </div>
 
         {/* Card 2 */}
-        <div className="bg-gray-100 shadow-md rounded-lg relative overflow-hidden max-w-sm transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600">
+        <div className="bg-gray-100 cursor-pointer shadow-lg rounded-lg relative overflow-hidden max-w-sm transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600">
           <h2 className="text-2xl font-semibold mb-4 text-center">Our Team</h2>
           <div className="h-56">
             <Image
@@ -77,22 +81,20 @@ export default function Home() {
               width={700}
               height={200}
               layout="responsive"
-              objectFit="cover" // Use cover to fill the entire space
+              objectFit="cover"
             />
           </div>
           <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100">
-            <p className="text-white text-lg font-bold text-center">
+            <p className="text-white text-lg font-bold text-center p-4">
               Our team is a diverse group of passionate individuals committed to
               making a difference in our community. Each member brings unique
               skills and experiences, united by a shared dedication to service.
-              Together, we foster an inclusive environment that encourages
-              collaboration and innovation, ensuring that every voice is heard.
             </p>
           </div>
         </div>
 
         {/* Card 3 */}
-        <div className="bg-gray-100 shadow-md rounded-lg relative overflow-hidden max-w-sm transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600">
+        <div className="bg-gray-100 cursor-pointer shadow-lg rounded-lg relative overflow-hidden max-w-sm transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600">
           <h2 className="text-2xl font-semibold mb-4 text-center">
             Our Vision
           </h2>
@@ -103,17 +105,15 @@ export default function Home() {
               width={700}
               height={200}
               layout="responsive"
-              objectFit="cover" // Use cover to fill the entire space
+              objectFit="cover"
             />
           </div>
           <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100">
-            <p className="text-white text-lg font-bold text-center">
+            <p className="text-white text-lg font-bold text-center p-4">
               We envision a world where everyone can contribute their time and
               talents to uplift their communities. Our goal is to inspire
               action, foster connections among diverse groups, and empower
-              communities to thrive together. Together, we create a culture of
-              active citizenship, embracing volunteerism as a vital part of
-              life.
+              communities to thrive together.
             </p>
           </div>
         </div>
@@ -125,7 +125,7 @@ export default function Home() {
           {/* Logo Section */}
           <div className="w-full md:w-1/4 mb-6">
             <Image
-              src="/logo.png" // Replace with your logo path
+              src="/logo.png"
               alt="Logo"
               width={100}
               height={90}
@@ -134,44 +134,11 @@ export default function Home() {
             <p className="mt-2">Connecting communities through volunteerism.</p>
           </div>
 
-          {/* Quick Links */}
-          <div className="w-full md:w-1/4 mb-6">
-            <h2 className="text-xl font-semibold mb-2">Quick Links</h2>
-            <ul>
-              <li className="mb-2">
-                <Link href="/about" className="text-gray-400 hover:text-white">
-                  About Us
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link
-                  href="/volunteer"
-                  className="text-gray-400 hover:text-white"
-                >
-                  Volunteer
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link
-                  href="/contact"
-                  className="text-gray-400 hover:text-white"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li className="mb-2">
-                <Link href="/events" className="text-gray-400 hover:text-white">
-                  Events
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Follow Us Section */}
           <div className="w-full md:w-1/4 mb-6">
             <h2 className="text-xl font-semibold mb-2">Follow Us</h2>
-            <ul>
-              <li className="mb-2">
+            <ul className="flex space-x-4">
+              <li>
                 <Link
                   href="https://facebook.com"
                   className="text-gray-400 hover:text-white"
@@ -179,7 +146,7 @@ export default function Home() {
                   Facebook
                 </Link>
               </li>
-              <li className="mb-2">
+              <li>
                 <Link
                   href="https://twitter.com"
                   className="text-gray-400 hover:text-white"
@@ -187,7 +154,7 @@ export default function Home() {
                   Twitter
                 </Link>
               </li>
-              <li className="mb-2">
+              <li>
                 <Link
                   href="https://instagram.com"
                   className="text-gray-400 hover:text-white"
@@ -201,14 +168,13 @@ export default function Home() {
           {/* Contact Info */}
           <div className="w-full md:w-1/4 mb-6">
             <h2 className="text-xl font-semibold mb-2">Contact Us</h2>
-            <p className="text-gray-400 mb-2">Email: voluntrust@gmail.com</p>
-            <p className="text-gray-400">Phone: +91 8850585249</p>
+            <p className="text-gray-400">Email: info@volunteer.org</p>
+            <p className="text-gray-400">Phone: (123) 456-7890</p>
           </div>
         </div>
-
-        {/* Copyright Section */}
-        <div className="text-center mt-6 border-t border-gray-700 pt-4">
-          <p>© 2024 Your Volunteer Website. All Rights Reserved.</p>
+        <div className="text-center mt-6 text-gray-400">
+          &copy; {new Date().getFullYear()} Volunteer Network. All rights
+          reserved.
         </div>
       </footer>
     </div>
