@@ -85,16 +85,16 @@ const Alert = ({ isActive }) => {
             </Link>
           </li>
           <li>
-              <Link
-                href="../../components/alerts"
-                className="block px-3 py-2 rounded bg-gray-700" // Active class for Inventory
-              >
-                Alerts
-              </Link>
-            </li>
+            <Link
+              href="../../components/alerts"
+              className="block px-3 py-2 rounded bg-gray-700" // Active class for Inventory
+            >
+              Alerts
+            </Link>
+          </li>
           <li>
             <Link
-              href="../../components/"
+              href="../../components/displayalerts"
               className="block px-3 py-2 rounded hover:bg-gray-700"
             >
               Display Alerts
@@ -102,7 +102,7 @@ const Alert = ({ isActive }) => {
           </li>
           <li>
             <Link
-              href="/admin/organisations"
+              href="../../components/displayalerts"
               className="block px-3 py-2 rounded hover:bg-gray-700"
             >
               Organisations

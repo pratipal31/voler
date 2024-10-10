@@ -23,6 +23,7 @@ model VolunteerProfile {
   certifications  String[]
   availability    String
   isVerified      Boolean @default(false)
+  ratings         Float?   // New field for ratings, optional
 }
 
 // 2. Real-Time Alerts for Urgent Volunteer Needs
@@ -33,7 +34,6 @@ model Alert {
   organizationId    String
   skillsNeeded      String[]
   location          String
-  volunteerIds      String[]
   createdAt         DateTime   @default(now())
   alertType         String
   notification      String[]               

@@ -1,9 +1,7 @@
 "use client"; // Client Component
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import SignUp from '../signup/page';
-import HomePage from '../home/page';
+import React, { useState } from "react";
+import Link from "next/link";
 
 const LoginPage = () => {
   const [identifier, setIdentifier] = useState(""); // Changed email to identifier
@@ -28,7 +26,7 @@ const LoginPage = () => {
       if (response.ok) {
         console.log("Login successful:", data);
         // Redirect user to another page after successful login
-        window.location.href = "../../components/signup"; // Redirect to your dashboard or homepage
+        window.location.href = "../../components/home"; // Redirect to your dashboard or homepage
       } else {
         setError(data.error || "Login failed"); // Show the error message
       }
@@ -52,7 +50,7 @@ const LoginPage = () => {
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2" htmlFor="identifier">
-              Email / Phone Number / Username
+              Email
             </label>
             <input
               type="text" // Change type to text for more flexibility
@@ -78,13 +76,12 @@ const LoginPage = () => {
               placeholder="Enter your password"
             />
           </div>
-          <Link href="../../components/home">
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
             Login
           </button>
-          </Link>
         </form>
         <div className="flex justify-between mt-4">
           <Link
@@ -93,7 +90,10 @@ const LoginPage = () => {
           >
             Forgot Password?
           </Link>
-          <Link href="/signup" className="text-blue-600 hover:underline">
+          <Link
+            href="../../components/signup"
+            className="text-blue-600 hover:underline"
+          >
             Register Here?
           </Link>
         </div>

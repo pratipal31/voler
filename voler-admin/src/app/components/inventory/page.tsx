@@ -1,19 +1,31 @@
 "use client";
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from "react";
+import Link from "next/link";
 
 const Inventory = () => {
   const [inventory, setInventory] = useState([
-    { id: 1, name: 'Resource A', qty: 10, type: 'Type 1', description: 'Description A' },
-    { id: 2, name: 'Resource B', qty: 5, type: 'Type 2', description: 'Description B' },
+    {
+      id: 1,
+      name: "Resource A",
+      qty: 10,
+      type: "Type 1",
+      description: "Description A",
+    },
+    {
+      id: 2,
+      name: "Resource B",
+      qty: 5,
+      type: "Type 2",
+      description: "Description B",
+    },
   ]);
 
   const [newResource, setNewResource] = useState({
-    id: '',
-    name: '',
-    qty: '',
-    type: '',
-    description: '',
+    id: "",
+    name: "",
+    qty: "",
+    type: "",
+    description: "",
   });
 
   const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog visibility
@@ -24,12 +36,20 @@ const Inventory = () => {
   };
 
   const addResource = () => {
-    if (newResource.name && newResource.qty && newResource.type && newResource.description) {
-      setInventory([...inventory, { ...newResource, id: inventory.length + 1 }]);
-      setNewResource({ id: '', name: '', qty: '', type: '', description: '' });
+    if (
+      newResource.name &&
+      newResource.qty &&
+      newResource.type &&
+      newResource.description
+    ) {
+      setInventory([
+        ...inventory,
+        { ...newResource, id: inventory.length + 1 },
+      ]);
+      setNewResource({ id: "", name: "", qty: "", type: "", description: "" });
       setIsDialogOpen(false); // Close the dialog after adding
     } else {
-      alert('Please fill in all fields before adding a resource.');
+      alert("Please fill in all fields before adding a resource.");
     }
   };
 
@@ -38,19 +58,25 @@ const Inventory = () => {
   };
 
   const addQuantity = (id) => {
-    setInventory(inventory.map((resource) => 
-      resource.id === id ? { ...resource, qty: resource.qty + 1 } : resource
-    ));
+    setInventory(
+      inventory.map((resource) =>
+        resource.id === id ? { ...resource, qty: resource.qty + 1 } : resource
+      )
+    );
   };
 
   const removeQuantity = (id) => {
-    setInventory(inventory.map((resource) => {
-      if (resource.id === id) {
-        const newQty = resource.qty - 1;
-        return newQty > 0 ? { ...resource, qty: newQty } : null; // Return null if quantity is 0
-      }
-      return resource;
-    }).filter(Boolean)); // Filter out null values
+    setInventory(
+      inventory
+        .map((resource) => {
+          if (resource.id === id) {
+            const newQty = resource.qty - 1;
+            return newQty > 0 ? { ...resource, qty: newQty } : null; // Return null if quantity is 0
+          }
+          return resource;
+        })
+        .filter(Boolean)
+    ); // Filter out null values
   };
 
   return (
@@ -87,7 +113,7 @@ const Inventory = () => {
             </li>
             <li>
               <Link
-                href="/admin/display-alerts"
+                href="../../components/displayalerts"
                 className="block px-3 py-2 rounded hover:bg-gray-700"
               >
                 Display Alerts
@@ -95,21 +121,21 @@ const Inventory = () => {
             </li>
             <li>
               <Link
-                href="/admin/organisations"
+                href="../../components/displayalerts"
                 className="block px-3 py-2 rounded hover:bg-gray-700"
               >
                 Organisations
               </Link>
             </li>
             <li>
-            <Link
-              href="../../components/signup"
-              onClick={() => setActivePage("signup")}
-              className="block px-3 py-2 rounded hover:bg-gray-700"
-            >
-              Log Out
-            </Link>
-          </li>
+              <Link
+                href="../../components/signup"
+                onClick={() => setActivePage("signup")}
+                className="block px-3 py-2 rounded hover:bg-gray-700"
+              >
+                Log Out
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -133,9 +159,10 @@ const Inventory = () => {
             </div>
           </div>
 
-          <div className="p-6 pt-4 space-y-6"> {/* Space below the navbar */}
+          <div className="p-6 pt-4 space-y-6">
+            {" "}
+            {/* Space below the navbar */}
             <h1 className="text-2xl font-bold mb-4 text-center">Inventory</h1>
-
             <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-6">
               <h2 className="text-xl font-semibold mb-3">Add New Resource</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -179,12 +206,13 @@ const Inventory = () => {
                 Add Resource
               </button>
             </div>
-
             {/* Resource Dialog */}
             {isDialogOpen && (
               <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                 <div className="bg-white p-6 rounded shadow-lg">
-                  <h2 className="text-xl font-semibold mb-3">Add New Resource</h2>
+                  <h2 className="text-xl font-semibold mb-3">
+                    Add New Resource
+                  </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <input
                       type="text"
@@ -236,7 +264,6 @@ const Inventory = () => {
                 </div>
               </div>
             )}
-
             <div className="overflow-x-auto">
               <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
                 <thead>
@@ -252,7 +279,10 @@ const Inventory = () => {
                 <tbody className="text-gray-600 text-sm">
                   {inventory.length > 0 ? (
                     inventory.map((resource) => (
-                      <tr key={resource.id} className="border-b border-gray-200 hover:bg-gray-100">
+                      <tr
+                        key={resource.id}
+                        className="border-b border-gray-200 hover:bg-gray-100"
+                      >
                         <td className="py-3 px-6">{resource.id}</td>
                         <td className="py-3 px-6">{resource.name}</td>
                         <td className="py-3 px-6">{resource.qty}</td>

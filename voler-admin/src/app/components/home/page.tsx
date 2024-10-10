@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Line, Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -14,9 +14,7 @@ import {
   Legend,
 } from "chart.js";
 import Link from "next/link";
-import Inventory from "../inventory/page";
-import Alert from "../alerts/page";
-import SignUp from "../signup/page";
+import { getCookie, deleteCookie } from "cookies-next"; // Import the necessary functions for cookies
 
 // Register necessary components for Chart.js
 ChartJS.register(
@@ -33,7 +31,14 @@ ChartJS.register(
 
 const HomePage = () => {
   const [activePage, setActivePage] = useState("dashboard");
-  const user = "Pratipal"; // You can dynamically fetch or set the username
+  const [user, setUser] = useState("User");
+
+  useEffect(() => {
+    const userSession = getCookie("userSession"); // Get the user session from cookies
+    if (userSession) {
+      setUser(JSON.parse(userSession).name);
+    }
+  }, []);
 
   // Sample data for different charts
   const volunteerData = {
@@ -117,6 +122,11 @@ const HomePage = () => {
     },
   };
 
+  const handleLogout = () => {
+    deleteCookie("userSession"); // Remove the session cookie
+    window.location.href = "../../components/login"; // Redirect to the login page
+  };
+
   return (
     <div className="flex">
       {/* Sidebar Navigation */}
@@ -158,7 +168,7 @@ const HomePage = () => {
           </li>
           <li>
             <Link
-              href="/admin/display-alerts"
+              href="../../components/displayalerts"
               onClick={() => setActivePage("display-alerts")}
               className={`block px-3 py-2 rounded hover:bg-gray-700 ${
                 activePage === "display-alerts" ? "bg-gray-700" : ""
@@ -169,7 +179,7 @@ const HomePage = () => {
           </li>
           <li>
             <Link
-              href="/admin/organisations"
+              href="../../components/displayalerts"
               onClick={() => setActivePage("organisations")}
               className={`block px-3 py-2 rounded hover:bg-gray-700 ${
                 activePage === "organisations" ? "bg-gray-700" : ""
@@ -179,13 +189,12 @@ const HomePage = () => {
             </Link>
           </li>
           <li>
-            <Link
-              href="../../components/signup"
-              onClick={() => setActivePage("signup")}
+            <button
+              onClick={handleLogout}
               className="block px-3 py-2 rounded hover:bg-gray-700"
             >
               Log Out
-            </Link>
+            </button>
           </li>
         </ul>
       </nav>
