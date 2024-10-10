@@ -1,4 +1,22 @@
 "use client";
+import React, { useState } from "react";
+import { Line, Bar, Pie } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  BarElement,
+  LineElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import Link from "next/link";
+import Inventory from "../inventory/page";
+import Alert from "../alerts/page";
+import SignUp from "../signup/page";
 import React, { useState, useEffect } from "react";
 import { Line, Bar, Pie } from "react-chartjs-2";
 import {
