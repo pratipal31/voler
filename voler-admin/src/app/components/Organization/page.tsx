@@ -4,7 +4,11 @@ import Link from "next/link";
 
 const Organization = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedOrg, setSelectedOrg] = useState(null);
+  const [selectedOrg, setSelectedOrg] = useState<{
+    name: string;
+    details: string;
+    imageUrl: string;
+  } | null>(null);
   const [resourceName, setResourceName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [showSuccessAlert, setShowSuccessAlert] = useState(false); // State to show success alert
@@ -24,18 +28,26 @@ const Organization = () => {
     },
     {
       name: "UNICEF",
-      details: "The United Nations Children's Fund works to improve children's welfare.",
+      details:
+        "The United Nations Children's Fund works to improve children's welfare.",
       imageUrl: "/unicef.jpg",
     },
     {
       name: "World Food Programme",
-      details: "An organization focused on hunger relief and food security around the world.",
+      details:
+        "An organization focused on hunger relief and food security around the world.",
       imageUrl: "/food.jpg",
     },
   ];
 
   // Function to open the modal and set the selected organization
-  const openModal = (org) => {
+  const openModal = (
+    org: React.SetStateAction<{
+      name: string;
+      details: string;
+      imageUrl: string;
+    } | null>
+  ) => {
     setSelectedOrg(org);
     setIsModalOpen(true);
   };
@@ -48,11 +60,11 @@ const Organization = () => {
   };
 
   // Function to handle resource request form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log("Resource Name:", resourceName);
     console.log("Quantity:", quantity);
-    console.log("Organization:", selectedOrg.name);
+    console.log("Organization:", selectedOrg?.name);
 
     // Display success alert
     setShowSuccessAlert(true);
@@ -106,7 +118,7 @@ const Organization = () => {
           </li>
           <li>
             <Link
-              href="/admin/organisations"
+              href="../../components/Organization"
               className="block px-3 py-2 rounded hover:bg-blue-600 transition"
             >
               Organisations
@@ -186,7 +198,9 @@ const Organization = () => {
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label className="block text-gray-700 mb-2">Resource Name</label>
+                <label className="block text-gray-700 mb-2">
+                  Resource Name
+                </label>
                 <input
                   type="text"
                   className="border border-gray-300 rounded-lg py-2 px-4 w-full"

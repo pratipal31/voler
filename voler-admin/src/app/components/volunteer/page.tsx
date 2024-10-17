@@ -27,7 +27,7 @@ const VolunteerDetails = () => {
     fetchVolunteers();
   }, []);
 
-  const handleRatingChange = (volunteerId: number, newRating: number) => {
+  const handleRatingChange = (volunteerId: string, newRating: number) => {
     setVolunteers((prevVolunteers) =>
       prevVolunteers.map((volunteer) =>
         volunteer.id === volunteerId

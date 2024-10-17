@@ -1,5 +1,10 @@
 "use client";
 import React, { useState } from "react";
+
+// Define the setActivePage function
+const setActivePage = (page: string) => {
+  console.log(`Navigating to ${page}`);
+};
 import Link from "next/link";
 
 const Inventory = () => {
@@ -30,7 +35,7 @@ const Inventory = () => {
 
   const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog visibility
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setNewResource({ ...newResource, [name]: value });
   };
@@ -42,9 +47,13 @@ const Inventory = () => {
       newResource.type &&
       newResource.description
     ) {
-      setInventory([
-        ...inventory,
-        { ...newResource, id: inventory.length + 1 },
+      setInventory((prevInventory) => [
+        ...prevInventory,
+        {
+          ...newResource,
+          id: prevInventory.length + 1,
+          qty: Number(newResource.qty),
+        },
       ]);
       setNewResource({ id: "", name: "", qty: "", type: "", description: "" });
       setIsDialogOpen(false); // Close the dialog after adding
@@ -53,11 +62,11 @@ const Inventory = () => {
     }
   };
 
-  const deleteResource = (id) => {
+  const deleteResource = (id: number) => {
     setInventory(inventory.filter((resource) => resource.id !== id));
   };
 
-  const addQuantity = (id) => {
+  const addQuantity = (id: number) => {
     setInventory(
       inventory.map((resource) =>
         resource.id === id ? { ...resource, qty: resource.qty + 1 } : resource
@@ -65,7 +74,7 @@ const Inventory = () => {
     );
   };
 
-  const removeQuantity = (id) => {
+  const removeQuantity = (id: number) => {
     setInventory(
       inventory
         .map((resource) => {
@@ -75,7 +84,17 @@ const Inventory = () => {
           }
           return resource;
         })
-        .filter(Boolean)
+        .filter(
+          (
+            resource
+          ): resource is {
+            id: number;
+            name: string;
+            qty: number;
+            type: string;
+            description: string;
+          } => resource !== null
+        )
     ); // Filter out null values
   };
 
@@ -312,7 +331,7 @@ const Inventory = () => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="6" className="py-3 px-6 text-center">
+                      <td colSpan={6} className="py-3 px-6 text-center">
                         No resources available
                       </td>
                     </tr>

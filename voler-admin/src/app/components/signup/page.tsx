@@ -1,8 +1,6 @@
 "use client"; // Client Component
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter from Next.js
-import { db } from "../../../firebase/firebaseConfig"; // Import the Firestore database
-import { collection, addDoc } from "firebase/firestore"; // Import Firestore functions
 
 const SignUp = () => {
   const router = useRouter(); // Initialize useRouter for navigation
@@ -32,13 +30,6 @@ const SignUp = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      // Determine the collection based on user type for Firebase
-      const collectionName = type === "Person" ? "Person" : "Organization";
-
-      // Add document to the respective collection in Firestore
-      await addDoc(collection(db, collectionName), formData);
-      console.log("Form data submitted to Firebase:", { type, ...formData });
-
       // Send data to the backend API to be saved in MongoDB using Prisma
       const response = await fetch("/api/signup/route", {
         method: "POST",
@@ -74,7 +65,7 @@ const SignUp = () => {
       // Navigate to the login page after successful submission
       router.push("../../components/login");
     } catch (error) {
-      console.error("Error adding document: ", error);
+      console.error("Error submitting form: ", error);
     }
   };
 

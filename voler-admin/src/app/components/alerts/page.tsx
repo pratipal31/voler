@@ -2,25 +2,28 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-const Alert = ({ isActive }) => {
+const Alert = ({}) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     organizationId: "",
     skillsNeeded: "",
     location: "",
-    volunteerIds: "",
     alertType: "",
     notification: "",
     startDateTime: "",
     endDateTime: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<{
+    [key in keyof typeof formData]?: string;
+  }>({});
   const user = "Pratipal"; // You can dynamically fetch or set the username
 
   // Handle input change
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -29,19 +32,19 @@ const Alert = ({ isActive }) => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newErrors = {};
+    const newErrors: { [key in keyof typeof formData]?: string } = {};
 
     // Validate required fields
-    for (const key in formData) {
+    (Object.keys(formData) as (keyof typeof formData)[]).forEach((key) => {
       if (!formData[key]) {
         newErrors[key] = "This field is required";
       }
-    }
+    });
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
     } else {
       // Submit the form data
       console.log("Form submitted:", formData);
@@ -52,7 +55,6 @@ const Alert = ({ isActive }) => {
         organizationId: "",
         skillsNeeded: "",
         location: "",
-        volunteerIds: "",
         alertType: "",
         notification: "",
         startDateTime: "",
@@ -144,7 +146,7 @@ const Alert = ({ isActive }) => {
         <div className="flex justify-center items-center h-full p-4">
           <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-lg">
             <h1 className="text-2xl font-bold mb-4 text-center">Alerts</h1>
-            {Object.keys(formData).map((key) => (
+            {(Object.keys(formData) as (keyof typeof formData)[]).map((key) => (
               <div key={key} className="flex flex-col mb-4">
                 <label className="block text-md font-medium mb-1">
                   {key.charAt(0).toUpperCase() +
@@ -154,7 +156,7 @@ const Alert = ({ isActive }) => {
                 {key === "description" ? (
                   <textarea
                     name={key}
-                    value={formData[key]}
+                    value={formData[key] as string}
                     onChange={handleChange}
                     required
                     className="border rounded p-2 w-full h-24 resize-none text-md" // Set a smaller width and height for description

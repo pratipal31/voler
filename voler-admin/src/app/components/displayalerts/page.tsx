@@ -86,7 +86,7 @@ const HomePage = () => {
           </li>
           <li>
             <Link
-              href="../../components/displayalerts"
+              href="../../components/Organization"
               onClick={() => setActivePage("organisations")}
               className={`block px-3 py-2 rounded hover:bg-gray-700 ${
                 activePage === "organisations" ? "bg-gray-700" : ""

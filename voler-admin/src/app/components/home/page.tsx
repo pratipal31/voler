@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Line, Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -103,7 +103,7 @@ const HomePage = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "top" as const,
       },
       title: {
         display: true,
@@ -116,7 +116,7 @@ const HomePage = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "top" as "top",
       },
       title: {
         display: true,
@@ -182,7 +182,7 @@ const HomePage = () => {
           </li>
           <li>
             <Link
-              href="../../components/displayalerts"
+              href="../../components/Organization"
               onClick={() => setActivePage("organisations")}
               className={`block px-3 py-2 rounded hover:bg-gray-700 ${
                 activePage === "organisations" ? "bg-gray-700" : ""
